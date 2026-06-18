@@ -33,7 +33,7 @@ export interface ConfigSite {
   description: string
   website: string
   pageSize: number
-  socialLinks: { name: string, href: string }[]
+  socialLinks: { name: string, href: string, icon?: string, iconSize?: string }[]
   navLinks: { name: string, href: string }[]
   categoryMap: { name: string, path: string }[]
   footer: string[]

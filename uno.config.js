@@ -12,6 +12,10 @@ import { themeConfig } from './src/.config'
 
 const { colorsDark, colorsLight, fonts } = themeConfig.appearance
 
+function getIconClass(social) {
+  return social.icon ?? `i-mdi-${social.name}`
+}
+
 const cssExtend = {
   ':root': {
     '--prose-borders': '#eee',
@@ -76,7 +80,7 @@ export default defineConfig({
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   safelist: [
-    ...themeConfig.site.socialLinks.map(social => `i-mdi-${social.name}`),
+    ...themeConfig.site.socialLinks.map(getIconClass),
     'i-mdi-content-copy',
     'i-mdi-check',
   ],

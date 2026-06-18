@@ -3,6 +3,18 @@ import { themeConfig } from '~/.config'
 
 const { navLinks, socialLinks } = themeConfig.site
 const { translate: t } = Astro.locals
+
+function getIconClass(name: string, icon?: string) {
+  return icon ?? `i-mdi-${name}`
+}
+
+function getIconSizeClass(iconSize?: string) {
+  return iconSize ? '' : 'w-6 h-6'
+}
+
+function getIconStyle(iconSize?: string) {
+  return iconSize ? `width: ${iconSize}; height: ${iconSize};` : undefined
+}
 ---
 
 <nav class="text-center font-bold" flex="~ col gap-4">
@@ -19,10 +31,17 @@ const { translate: t } = Astro.locals
   </ul>
   <ul flex="~ row gap-1 justify-center">
     {
-      socialLinks.map(({ href, name }) => (
+      socialLinks.map(({ href, icon, iconSize, name }) => (
         <li>
-          <a href={href} target="_blank" title={name} class="not-underline-hover inline-flex items-center">
-            <span class:list={[`i-mdi-${name}`, 'w-6 h-6']}>{name}</span>
+          <a
+            href={href}
+            target="_blank"
+            title={name}
+            class="not-underline-hover inline-flex items-center justify-center w-6 h-6"
+          >
+            <span class:list={[getIconClass(name, icon), getIconSizeClass(iconSize)]} style={getIconStyle(iconSize)}>
+              {name}
+            </span>
           </a>
         </li>
       ))
