@@ -42,6 +42,14 @@ export async function getPosts(isArchivePage = false) {
   return posts
 }
 
+export function getPostSlug(post: Post) {
+  return post.data.slug ?? post.id
+}
+
+export function getPostUrl(post: Post) {
+  return `/posts/${getPostSlug(post)}/`
+}
+
 const parser = new MarkdownIt()
 export function getPostDescription(post: Post) {
   if (post.data.description) {
